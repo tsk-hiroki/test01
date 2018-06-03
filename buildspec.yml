@@ -3,8 +3,8 @@ version: 0.2
 env:
   variables:
     TEST_ENV: "dev"
-  parameter-store:
-    LOGIN_PASSWORD: "dockerLoginPassword"
+#  parameter-store:
+#    LOGIN_PASSWORD: "dockerLoginPassword"
 
 phases:
   install:
@@ -15,13 +15,13 @@ phases:
   pre_build:
     commands:
       #- echo Entered the pre_build phase...
-      - docker login ?u User ?p $LOGIN_PASSWORD
+      #- docker login ?u User ?p $LOGIN_PASSWORD
       #- pwd
   build:
     commands:
-      - echo Entered the build phase...
-      - echo Build started on `date`
-      - mvn install
+      #- echo Entered the build phase...
+      #- echo Build started on `date`
+      #- mvn install
       - pwd
       - bash test.sh ${TEST_ENV}
   post_build:

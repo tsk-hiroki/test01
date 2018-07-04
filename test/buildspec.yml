@@ -21,6 +21,7 @@ phases:
       #- echo Build started on `date`
       #- mvn install
       - pwd
+      - cd test2/
       - bash test.sh ${TEST_ENV}
   post_build:
     commands:
@@ -28,8 +29,8 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/messageUtil-1.0.jar
-  discard-paths: yes
+#    - target/messageUtil-1.0.jar
+#  discard-paths: yes
 cache:
   paths:
     - '/root/.m2/**/*'

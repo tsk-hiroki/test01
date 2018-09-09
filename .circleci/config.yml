@@ -23,3 +23,5 @@ jobs:
             else
               echo 'export ENV=dev' >> $BASH_ENV
             fi
+            curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
+            apex version

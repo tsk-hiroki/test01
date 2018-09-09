@@ -1,0 +1,25 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/work
+  docker:
+    - image: circleci/node:8.10
+jobs:
+
+  build:
+    <<: *defaults
+    steps:
+      # 環境変数に $VERSION と $ENV を追加する
+      - run:
+          name: Export environment variables
+          command: |
+            echo 'export VERSION=$(printf '%s_%s' $(date '+%Y%m%d') $CIRCLE_BUILD_NUM)' >> $BASH_ENV
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+              echo 'export ENV=prd' >> $BASH_ENV
+            elif [[ "${CIRCLE_BRANCH}" == staging ]]; then
+              echo 'export ENV=stg' >> $BASH_ENV
+            elif [[ "${CIRCLE_BRANCH}" =~ release\/.+ ]]; then
+              echo 'export ENV=qas' >> $BASH_ENV
+            else
+              echo 'export ENV=dev' >> $BASH_ENV
+            fi

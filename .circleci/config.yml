@@ -34,5 +34,6 @@ jobs:
             aws --version
             aws s3 ls
             aws s3 cp work/aaa.txt s3://tes-tes-tes/test
+            cd ..
             pwd
             ls -la

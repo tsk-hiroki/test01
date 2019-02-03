@@ -27,7 +27,7 @@ jobs:
               echo 'export ENV=dev' >> $BASH_ENV
               ls -la
               pwd
-              mkdir ~/.aws && touch ~/.aws/credentials && echo -e "[default]\naws_access_key_id=$NG_AWS_ACCESS_KEY_ID\naws_secret_access_key=$NG_AWS_SECRET_ACCESS_KEY\n" > ~/.aws/credentials
+              mkdir ~/.aws && touch ~/.aws/credentials && echo -e "[default]\naws_access_key_id=$OK_AWS_ACCESS_KEY_ID\naws_secret_access_key=$OK_AWS_SECRET_ACCESS_KEY\n" > ~/.aws/credentials
               ls -la
               #echo "aws_access_key_id = ${NG_AWS_ACCESS_KEY_ID}" >>  ~/.aws/credentials
               #echo "aws_secret_access_key = ${NG_AWS_SECRET_ACCESS_KEY}" >>  ~/.aws/credentials
@@ -42,4 +42,5 @@ jobs:
             pwd
             ls -la
             cd ..
+            pwd
             ls -la

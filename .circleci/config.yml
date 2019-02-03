@@ -10,6 +10,7 @@ jobs:
     <<: *defaults
     steps:
       # 環境変数に $VERSION と $ENV を追加する
+      - checkout
       - run:
           name: Export environment variables
           command: |

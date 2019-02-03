@@ -3,7 +3,7 @@ version: 2
 defaults: &defaults
   working_directory: ~/work
   docker:
-    - image: circleci/node:8.10
+    - image: circleci/python:3.6
 jobs:
 
   build:
@@ -23,8 +23,8 @@ jobs:
             else
               echo 'export ENV=dev' >> $BASH_ENV
             fi
-            curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
-            apex version
+            #curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
+            #apex version
             sudo pip install awscli --upgrade
             aws --version
             aws s3 ls

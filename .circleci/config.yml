@@ -11,10 +11,11 @@ jobs:
     steps:
       # 環境変数に $VERSION と $ENV を追加する
       - checkout
-      - run: aws configure set region us-west-2
       - run:
           name: Export environment variables
           command: |
+            sudo pip install awscli --upgrade
+            #aws configure set region us-west-2
             echo 'export VERSION=$(printf '%s_%s' $(date '+%Y%m%d') $CIRCLE_BUILD_NUM)' >> $BASH_ENV
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               echo 'export ENV=prd' >> $BASH_ENV

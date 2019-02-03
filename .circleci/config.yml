@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Export environment variables
           command: |
-            sudo pip install awscli --upgrade
+            sudo pip install awscli
             aws configure set region us-west-2
             echo 'export VERSION=$(printf '%s_%s' $(date '+%Y%m%d') $CIRCLE_BUILD_NUM)' >> $BASH_ENV
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
@@ -32,7 +32,7 @@ jobs:
             fi
             #curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
             #apex version
-            sudo pip install awscli --upgrade
+            #sudo pip install awscli --upgrade
             aws --version
             aws s3 ls
             aws s3 cp work/aaa.txt s3://tes-tes-tes/test

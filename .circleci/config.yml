@@ -11,9 +11,9 @@ jobs:
     steps:
       # 環境変数に $VERSION と $ENV を追加する
       - checkout
+      - run: aws configure set region us-west-2
       - run:
           name: Export environment variables
-          aws configure set region us-west-2
           command: |
             echo 'export VERSION=$(printf '%s_%s' $(date '+%Y%m%d') $CIRCLE_BUILD_NUM)' >> $BASH_ENV
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then

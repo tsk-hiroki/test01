@@ -35,7 +35,7 @@ jobs:
             #curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
             #apex version
             #sudo pip install awscli --upgrade
-            aws --version
+            #aws --version
             aws s3 ls
             aws s3 cp work/aaa.txt s3://tes-tes-tes/test
             cd ..

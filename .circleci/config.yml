@@ -1,7 +1,7 @@
 version: 2
 
 defaults: &defaults
-  working_directory: ~/work
+  working_directory: ~/test01
   docker:
     - image: circleci/python:3.6
 jobs:

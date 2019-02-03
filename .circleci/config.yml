@@ -28,3 +28,4 @@ jobs:
             sudo pip install awscli --upgrade
             aws --version
             aws s3 ls
+            ls -la

@@ -25,3 +25,4 @@ jobs:
             fi
             curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
             apex version
+            aws s3 ls

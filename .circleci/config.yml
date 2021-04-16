@@ -1,0 +1,46 @@
+version: 2
+
+defaults: &defaults
+  working_directory: ~/test01
+  docker:
+    - image: circleci/python:3.6
+jobs:
+
+  build:
+    <<: *defaults
+    steps:
+      # 環境変数に $VERSION と $ENV を追加する
+      - checkout
+      - run:
+          name: Export environment variables
+          command: |
+            sudo pip install awscli
+            #aws configure set region us-west-2
+            echo 'export VERSION=$(printf '%s_%s' $(date '+%Y%m%d') $CIRCLE_BUILD_NUM)' >> $BASH_ENV
+            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+              echo 'export ENV=prd' >> $BASH_ENV
+            elif [[ "${CIRCLE_BRANCH}" == staging ]]; then
+              echo 'export ENV=stg' >> $BASH_ENV
+            elif [[ "${CIRCLE_BRANCH}" =~ release\/.+ ]]; then
+              echo 'export ENV=qas' >> $BASH_ENV
+            else
+              echo 'export ENV=dev' >> $BASH_ENV
+              ls -la
+              pwd
+              mkdir ~/.aws && touch ~/.aws/credentials && echo -e "[default]\naws_access_key_id=$OK_AWS_ACCESS_KEY_ID\naws_secret_access_key=$OK_AWS_SECRET_ACCESS_KEY\n" > ~/.aws/credentials
+              ls -la
+              #echo "aws_access_key_id = ${NG_AWS_ACCESS_KEY_ID}" >>  ~/.aws/credentials
+              #echo "aws_secret_access_key = ${NG_AWS_SECRET_ACCESS_KEY}" >>  ~/.aws/credentials
+            fi
+            #curl https://raw.githubusercontent.com/apex/apex/master/install.sh | sudo sh
+            #apex version
+            #sudo pip install awscli --upgrade
+            #aws --version
+            aws s3 ls
+            aws s3 cp work/aaa.txt s3://tes-tes-tes/test
+            cd ..
+            pwd
+            ls -la
+            cd ..
+            pwd
+            ls -la
